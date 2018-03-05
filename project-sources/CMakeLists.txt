@@ -17,7 +17,7 @@ link_directories(${GAZEBO_LIBRARY_DIRS})
 file(GLOB_RECURSE SRC_FILES *.cc *.hh)
 
 # Set plugins outpout path
-SET(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../plugin)
+SET(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../plugins)
 SET(CMAKE_CURRENT_SOURCE_DIR)
 
 # Create libraries and executables
