@@ -3,13 +3,16 @@ Construisez le projet avec CMake en appellant make build, compilez ensuite les p
 
 # Arborescence
 
--/models
+- /models
 Placez ici les modèles utilisé par le projet sous forme de dossier contenant le nom du modèle
--/plugins
+
+- /plugins
 C'est ici que sortent les plugins compilé.
--/project-sources/src/
+
+- /project-sources/src/
 Contient les sources .cc des plugins du projets
--/project-sources/include/
+
+- /project-sources/include/
 Contient les headers .hpp utilisé par les plugins du projets
 
 # Makefile
