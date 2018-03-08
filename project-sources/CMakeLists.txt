@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
 project(simulated_airport_environnement)
 
+# Repertoire du projet
+
+SET(CMAKE_CURRENT_PROJECT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/..)
+
 # Find packages
 
 find_package(gazebo REQUIRED)
@@ -17,7 +21,7 @@ link_directories(${GAZEBO_LIBRARY_DIRS})
 file(GLOB_RECURSE SRC_FILES *.cc *.hh)
 
 # Set plugins outpout path
-SET(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../plugins)
+SET(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_PROJECT_DIR}/plugins)
 SET(CMAKE_CURRENT_SOURCE_DIR)
 
 # Create libraries and executables

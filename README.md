@@ -1,5 +1,5 @@
 # Installation du projet
-Construisez le projet avec CMake en appellant make build, compilez ensuite les plugins en appellant make.
+Faites make dans la racine du projet, le Makefile appellera CMake et compilera les sources du projet à partir du Makefile produit.
 
 # Arborescence
 
@@ -18,13 +18,16 @@ Contient les headers .hpp utilisé par les plugins du projets
 # Makefile
 
 - make build
-Construit le projet et enregistre les dossiers plugins et models dans les variables d'envrionnement du projet.
+Crée le dossier project-build et appelle CMake à l'interieur
 
 - make compile
-Compile les sources du projet dans le dossier plugins, instruction par défault.
+Compile les sources du projet dans le dossier plugins, instruction par défaut.
 
 - make clean
 Efface les plugins compilé dans le dossier plugins.
 
+- make clearall
+Efface les plugins et le repertoire projet-build
+
 - make build-clean
-Efface les plugins ainsi et nettoie les fichiers et repertoires généré par CMake.
+Efface le repertoire project-build
