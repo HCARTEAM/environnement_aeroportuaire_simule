@@ -4,16 +4,16 @@ Faites make dans la racine du projet, le Makefile appellera CMake et compilera l
 # Arborescence
 
 - /models
-Placez ici les modèles utilisé par le projet sous forme de dossier contenant le nom du modèle
+Placez ici les modèles utilisés par le projet sous forme de dossiers contenant le nom du modèle
 
 - /plugins
-C'est ici que sortent les plugins compilé.
+C'est ici que sortent les plugins compilés.
 
 - /project-sources/src/
-Contient les sources .cc des plugins du projets
+Contient les sources .cc des plugins du projet
 
 - /project-sources/include/
-Contient les headers .hpp utilisé par les plugins du projets
+Contient les headers .hpp utilisés par les plugins du projet
 
 # Makefile
 
@@ -24,7 +24,7 @@ Crée le dossier project-build et appelle CMake à l'interieur
 Compile les sources du projet dans le dossier plugins, instruction par défaut.
 
 - make clean
-Efface les plugins compilé dans le dossier plugins.
+Efface les plugins compilés dans le dossier plugins.
 
 - make clearall
 Efface les plugins et le repertoire projet-build
