@@ -13,7 +13,7 @@ $(CMAKE_BUILD_DIRECTORY):
 	mkdir $(CMAKE_BUILD_DIRECTORY) && 	source ./env-install.sh
 
 build: |$(CMAKE_BUILD_DIRECTORY)
-	cd ./$(CMAKE_BUILD_DIRECTORY) &&	cmake ../project-sources
+	cd ./$(CMAKE_BUILD_DIRECTORY) &&	cmake ../project-sources -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 
 clearall: clean clean-build
 
