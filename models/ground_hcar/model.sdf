@@ -14,7 +14,7 @@
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <mesh>
-            <uri>/home/phoenix/ProjetUE/modelisation/sol.dae</uri>
+            <uri>model://ground_hcar/meshes/ground_hcar.stl</uri>
             <scale>1 1 1</scale>
           </mesh>
         </geometry>
@@ -23,3 +23,4 @@
     </link>
   </model>
 </sdf>
+

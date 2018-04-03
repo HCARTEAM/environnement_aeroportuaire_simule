@@ -6,10 +6,10 @@ grep "$gazeboPlugin" $bashrc
 pluginInscribed=$?
 grep "$gazeboModel" $bashrc
 modelInscrisbed=$?
+export GAZEBO_PLUGIN_PATH=`pwd`/plugin:$GAZEBO_PLUGIN_PATH
+export GAZEBO_MODEL_PATH=`pwd`/model:$GAZEBO_MODEL_PATH
 if [ $pluginInscribed -eq 1 -o $modelInscrisbed -eq 1 ]
 then
-  export GAZEBO_PLUGIN_PATH=`pwd`/plugin:$GAZEBO_PLUGIN_PATH
-  export GAZEBO_MODEL_PATH=`pwd`/model:$GAZEBO_MODEL_PATH
   echo $gazeboPlugin >> $bashrc
   echo $gazeboModel >> $bashrc
   echo "Environnement variable GAZEBO_MODEL_PATH and GAZEBO_PLUGIN_PATH set."

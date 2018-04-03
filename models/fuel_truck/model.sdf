@@ -1,23 +1,21 @@
 <?xml version="1.0" ?>
 <sdf version="1.6">
-  <model name="fuel_truck">
+  <model name="fuelTruck">
     <static>true</static>
     <link name="link">
       <collision name="collision">
-        <pose>0 0 0 1.525508  0 1.57079632679</pose>
         <geometry>
           <mesh>
-            <scale>0.6 0.6 0.6</scale>
-            <uri>model://fuel_truck/fuel_truck.dae</uri>
+            <scale>1 1 1</scale>
+            <uri>model://fuel_truck/meshes/fuelTruck.stl</uri>
           </mesh>
         </geometry>
       </collision>
       <visual name="visual">
-        <pose>0 0 0 1.525508 0 1.57079632679</pose>
         <geometry>
           <mesh>
-            <scale>0.6 0.6 0.6</scale>
-            <uri>model://fuel_truck/fuel_truck.dae</uri>
+            <scale>1 1 1</scale>
+            <uri>model://fuel_truck/meshes/fuelTruck.stl</uri>
           </mesh>
         </geometry>
       </visual>
