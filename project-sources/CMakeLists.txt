@@ -18,22 +18,16 @@ include_directories(include)
 link_directories(${GAZEBO_LIBRARY_DIRS})
 
 # Source file of project
-file(GLOB_RECURSE SRC_FILES *.cc)
-
+file(GLOB_RECURSE SRC_FILES *.cc *.hh)
 
 # Set plugins outpout path
 SET(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_PROJECT_DIR}/plugins)
 SET(CMAKE_CURRENT_SOURCE_DIR)
-SET(PROJECT_LIBRARIES)
 
 # Create libraries and executables
 
 foreach(_path ${SRC_FILES})
   get_filename_component(_name ${_path} NAME_WE)
   add_library(${_name} SHARED ${_path})
-  LIST(APPEND PROJECT_LIBRARIES ${_name})
-endforeach()
-foreach(_path ${SRC_FILES})
-  get_filename_component(_name ${_path} NAME_WE)
-  target_link_libraries(${_name} ${GAZEBO_LIBRARIES} vehicule)
+  target_link_libraries(${_name} ${GAZEBO_LIBRARIES})
 endforeach()
