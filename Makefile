@@ -1,16 +1,24 @@
 MAKEFLAGS =--no-print-directory
 SHELL := /bin/bash
+CMAKE_BUILD_DIRECTORY := project-build
+
+.PHONY: compile build clearall clean clean-build
 
 all: compile
 
-compile:
-	cd ./project-build && $(MAKE) $(MAKEFLAGS)
+compile: |build
+	cd $(CMAKE_BUILD_DIRECTORY) && $(MAKE) $(MAKEFLAGS)
+
+$(CMAKE_BUILD_DIRECTORY):
+	mkdir $(CMAKE_BUILD_DIRECTORY) && 	source ./env-install.sh
+
+build: |$(CMAKE_BUILD_DIRECTORY)
+	cd ./$(CMAKE_BUILD_DIRECTORY) &&	cmake ../project-sources -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+
+clearall: clean clean-build
 
 clean:
-	cd ./project-build && $(MAKE) clean $(MAKEFLAGS)
+	cd $(CMAKE_BUILD_DIRECTORY) && $(MAKE) clean $(MAKEFLAGS)
 
-build:
-	source ./env-install.sh && cd ./project-build &&	cmake ../project-sources
-
-clean-build: clean
-	cd ./project-build &&	rm -rf *
+clean-build:
+	rm -rf $(CMAKE_BUILD_DIRECTORY)

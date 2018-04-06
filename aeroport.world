@@ -3387,7 +3387,7 @@
         <kinematic>0</kinematic>
       </link>
       <pose frame=''>28.058 -28.9937 0 0 -0 0</pose>
-      <plugin name='foodtruck_animation' filename='foodtruck_animation.so'/>
+      <plugin name='foodtruck_animation' filename='libanimated_foodtruck.so'/>
     </model>
     <model name='fuel_truck'>
       <static>1</static>
@@ -3427,7 +3427,7 @@
         <kinematic>0</kinematic>
       </link>
       <pose frame=''>27.3512 1.04771 0 0 -0 0</pose>
-      <plugin name='fueltank_animation' filename='fueltank_animation.so'/>
+      <plugin name='fueltank_animation' filename='libanimated_fueltruck.so'/>
     </model>
     <model name='person_walking_clone_0'>
       <link name='link'>
