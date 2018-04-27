@@ -1,0 +1,4 @@
+husky_control
+/home/phoenix/ProjetUE/husky/devel/.private/husky_control/lib/pkgconfig/husky_control.pc /home/phoenix/ProjetUE/husky/devel/lib/pkgconfig/husky_control.pc
+/home/phoenix/ProjetUE/husky/devel/.private/husky_control/share/husky_control/cmake/husky_controlConfig-version.cmake /home/phoenix/ProjetUE/husky/devel/share/husky_control/cmake/husky_controlConfig-version.cmake
+/home/phoenix/ProjetUE/husky/devel/.private/husky_control/share/husky_control/cmake/husky_controlConfig.cmake /home/phoenix/ProjetUE/husky/devel/share/husky_control/cmake/husky_controlConfig.cmake

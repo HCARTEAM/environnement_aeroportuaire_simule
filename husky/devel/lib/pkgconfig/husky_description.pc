@@ -1,0 +1,8 @@
+prefix=/home/phoenix/ProjetUE/husky/devel
+
+Name: husky_description
+Description: Description of husky_description
+Version: 0.2.7
+Cflags: 
+Libs: -L/home/phoenix/ProjetUE/husky/devel/lib 
+Requires: 

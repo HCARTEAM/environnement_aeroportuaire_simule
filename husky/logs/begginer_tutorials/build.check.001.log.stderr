@@ -1,0 +1,8 @@
+[31m[1mCMake Error[0m at /opt/ros/kinetic/share/genmsg/cmake/genmsg-extras.cmake:94 (message):
+  add_message_files() directory not found:
+  /home/phoenix/ProjetUE/husky/src/begginer_tutorials/msg
+[36mCall Stack (most recent call first):[0m
+  CMakeLists.txt:204 (add_message_files)
+
+
+make: *** [cmake_check_build_system] Erreur 1

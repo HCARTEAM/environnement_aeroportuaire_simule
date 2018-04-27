@@ -1,0 +1,4 @@
+husky_description
+/home/phoenix/ProjetUE/husky/devel/.private/husky_description/lib/pkgconfig/husky_description.pc /home/phoenix/ProjetUE/husky/devel/lib/pkgconfig/husky_description.pc
+/home/phoenix/ProjetUE/husky/devel/.private/husky_description/share/husky_description/cmake/husky_descriptionConfig.cmake /home/phoenix/ProjetUE/husky/devel/share/husky_description/cmake/husky_descriptionConfig.cmake
+/home/phoenix/ProjetUE/husky/devel/.private/husky_description/share/husky_description/cmake/husky_descriptionConfig-version.cmake /home/phoenix/ProjetUE/husky/devel/share/husky_description/cmake/husky_descriptionConfig-version.cmake
