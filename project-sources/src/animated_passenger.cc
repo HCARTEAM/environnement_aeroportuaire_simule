@@ -31,6 +31,9 @@ namespace gazebo
     {
 
       this->_model = _parent;
+
+      double Zpos(_model->GetWorldPose().pos.z);
+
       const math::Pose& modelPose = _model->GetWorldPose();
 
         // create the animation
@@ -46,7 +49,7 @@ namespace gazebo
 
         // set final location of the passenger
         key = anim->CreateKeyFrame(10);
-        key->Translation(ignition::math::Vector3d(7.23907, -8.00261, Ground_ZPos));
+        key->Translation(ignition::math::Vector3d(7.23907, -8.00261, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, -0, 0));
 
         // set the animation
