@@ -21,6 +21,7 @@
 #include <gazebo/common/common.hh>
 #include <gazebo/math/gzmath.hh>
 #include <stdio.h>
+#include <sae_globals.hh>
 
 namespace gazebo
 {
@@ -28,27 +29,24 @@ namespace gazebo
   {
     public: void Load(physics::ModelPtr _parent, sdf::ElementPtr /*_sdf*/)
     {
-      // Store the pointer to the model
+
       this->_model = _parent;
       const math::Pose& modelPose = _model->GetWorldPose();
 
         // create the animation
         gazebo::common::PoseAnimationPtr anim(
-              // name the animation "test",
-              // make it last 10 seconds,
-              // and set it on a repeat loop
-              new gazebo::common::PoseAnimation("test", 10.0, false));
+              new gazebo::common::PoseAnimation("passenger", 10.0, false));
 
         gazebo::common::PoseKeyFrame *key;
 
-        // set starting location of the box
+        // set starting location of the passenger
         key = anim->CreateKeyFrame(0);
         key->Translation(modelPose.pos.Ign());
         key->Rotation(modelPose.rot.Ign());
 
-        // set final location equal to starting location
+        // set final location of the passenger
         key = anim->CreateKeyFrame(10);
-        key->Translation(ignition::math::Vector3d(7.23907, -8.00261, 0));
+        key->Translation(ignition::math::Vector3d(7.23907, -8.00261, Ground_ZPos));
         key->Rotation(ignition::math::Quaterniond(0, -0, 0));
 
         // set the animation
@@ -60,7 +58,7 @@ namespace gazebo
     }
 
     public: void OnUpdate(const common::UpdateInfo & /*_info*/) {
-
+      /* Destroy the passenger when they arrive */
       if (_anim->GetTime() >= _anim->GetLength()) {
           _model->GetWorld()->RemoveModel(_model);
       }
