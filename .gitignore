@@ -1,0 +1,4 @@
+/plugins
+/project-build
+/husky/*
+!/husky/src
