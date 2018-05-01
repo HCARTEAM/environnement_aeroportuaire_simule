@@ -24,7 +24,7 @@ Crée le dossier project-build et appelle CMake à l'interieur
 Compile les sources du projet dans le dossier plugins, instruction par défaut.
 
 - make clean
-Efface les plugins compilé dans le dossier plugins.
+Efface les plugins compilés dans le dossier plugins.
 
 - make clearall
 Efface les plugins et le repertoire projet-build
