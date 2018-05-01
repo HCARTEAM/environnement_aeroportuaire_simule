@@ -30,33 +30,82 @@
 // %EndTag(ROS_HEADER)%
 // %Tag(MSG_HEADER)%
 
+#include <nav_msgs/Odometry.h>
 #include <geometry_msgs/Twist.h>
 #include <sensor_msgs/LaserScan.h>
+#include <math.h>
+#include <vector>
+#include <utility>
 
 // %EndTag(MSG_HEADER)%
 
 #include <sstream>
 
-float ang_vel = 0.0;
+static const std::vector<std::pair<double, double>> goalsVector = { {7.82, 31.4}, {-2.4, 38.6}, {-11.8, 30.5}, {-8.6, 25.6}, {-19.46, 14.2}, {11.0, -1.3}, {14.0, 9.0}}; 
+double ang_vel = 0.0;
+double vel = 0.8;
+double eps = 2.0;
+double xState = 13.0;
+double yState = 9.0;
+double xGoal = 7.82;
+double yGoal = 31.4;
+double z_orientation = 0.0;
+double max_rotation = M_PI / 4;
+int goalIndex = 0;
 
-void chatterCallback(const sensor_msgs::LaserScan msg)
+
+void hstateCallback(const nav_msgs::Odometry msg)
 {
-  int size((msg.angle_max - msg.angle_min) / msg.angle_increment), nearest(0);
-  for (int i(1); i < size; i++)
-    if (msg.ranges[i] < msg.ranges[nearest])
-      nearest = i;
-
-  if (msg.ranges[nearest] > 30.0)
-    ang_vel = 0.0;
-  else
-    if (nearest > ((size/2) - 1))
-      ang_vel = -0.6;
-    else
-      ang_vel = 0.6;
-
-  ROS_INFO("I heard: [%f])", msg.angle_increment);
+    xState = msg.pose.pose.position.x;
+    yState = msg.pose.pose.position.y;
+    /* transform quaternion to yaw */
+    double siny = 2.0 * (msg.pose.pose.orientation.w * msg.pose.pose.orientation.z + msg.pose.pose.orientation.x * msg.pose.pose.orientation.y);
+    double cosy = 1.0 - 2.0 * (msg.pose.pose.orientation.y * msg.pose.pose.orientation.y + msg.pose.pose.orientation.z * msg.pose.pose.orientation.z);  
+    z_orientation = atan2(siny, cosy);
+    ROS_INFO("G_POS : [%f, %f]", xGoal, yGoal);
+    ROS_INFO("R_POS : [%f, %f]", xState, yState);
+    ROS_INFO("Z_ORIENTATION : [%f]", z_orientation);
 }
+  
+void laserCallback(const sensor_msgs::LaserScan msg)
+{
+  int size((msg.angle_max - msg.angle_min) / msg.angle_increment);
+  int nearest((msg.angle_min - M_PI / 2) * msg.angle_increment);
+  double dist {sqrt((xGoal - xState) * (xGoal - xState) + (yGoal - yState) * (yGoal - yState))};
+  double maxD {3.0};
 
+  for (int i = (size / 2) - (M_PI/(2* msg.angle_increment)); i <= size + (M_PI/(2* msg.angle_increment)); i++)
+    if (msg.ranges[i] < msg.ranges[nearest] && msg.ranges[i] > 0.5)
+      nearest = i;
+  if (msg.ranges[nearest] > 5.0 || (msg.ranges[nearest] > dist))
+  {
+    if (xGoal > xState)
+      ang_vel = atan((yGoal - yState)/(xGoal - xState));
+    else
+    {
+      if (yGoal > yState)
+        ang_vel = M_PI + atan((yGoal - yState)/(xGoal - xState));
+      else
+        ang_vel = -M_PI + atan((yGoal - yState)/(xGoal - xState));
+    }
+    ROS_INFO("ANG_VEL : [%f]", ang_vel);
+    ang_vel = ang_vel - z_orientation;
+    if (ang_vel > (M_PI))
+      ang_vel = ang_vel - (2 * M_PI);
+    else if (ang_vel < (M_PI))
+      ang_vel = ang_vel + (2 * M_PI);
+  }
+  else if (msg.ranges[nearest] < maxD)
+  {
+    ang_vel = (M_PI/2) * (maxD - msg.ranges[nearest]) / maxD;
+    if (nearest > ((size/2) - 1))
+      ang_vel = -ang_vel ;
+  }
+  if (dist <= vel)
+    vel = dist;
+  else
+    vel = 0.8;
+}
 
 /**
  * This tutorial demonstrates simple sending of messages over the ROS system.
@@ -74,7 +123,7 @@ int main(int argc, char **argv)
    * part of the ROS system.
    */
 // %Tag(INIT)%
-  ros::init(argc, argv, "talker");
+  ros::init(argc, argv, "nav");
 // %EndTag(INIT)%
 
   /**
@@ -96,23 +145,27 @@ int main(int argc, char **argv)
    * node.  advertise() returns a Publisher object which allows you to
    * publish messages on that topic through a call to publish().  Once
    * all copies of the returned Publisher object are destroyed, the topic
-   * will be automatically unadvertised.
+   * will be autXomatically unadvertised.
    *
    * The second parameter to advertise() is the size of the message queue
    * used for publishing messages.  If messages are published more quickly
    * than we can send them, the number here specifies how many messages to
    * buffer up before throwing some away.
    */
-// %Tag(PUBLISHER)%
-  ros::Publisher chatter_pub = n.advertise<geometry_msgs::Twist>("/husky_velocity_controller/cmd_vel", 1000);
-// %EndTag(PUBLISHER)%
+
+// %Tag(PUBLISHERS)
+  ros::Publisher cmd_vel_pub = n.advertise<geometry_msgs::Twist>("/husky_velocity_controller/cmd_vel", 1);
+// %EndTag(PUBLISHERS)%
 
 // %Tag(SUBSCRIBER)%
-  ros::Subscriber chatter_sub = n.subscribe<sensor_msgs::LaserScan>("/scan", 1000, &chatterCallback);
-// %EndTag(SUBSCRIBER)%  
+  ros::Subscriber hstate_sub = n.subscribe<nav_msgs::Odometry>("/ground_truth/husky_state", 1, &hstateCallback);
+  ros::Subscriber laser_sub = n.subscribe<sensor_msgs::LaserScan>("/scan", 1, &laserCallback);
+// %EndTag(SUBSCRIBER)%
+
+
 
 // %Tag(LOOP_RATE)%
-  ros::Rate loop_rate(10);
+  ros::Rate loop_rate(8);
 // %EndTag(LOOP_RATE)%
 
   /**
@@ -120,17 +173,31 @@ int main(int argc, char **argv)
    * a unique string for each message.
    */
 // %Tag(ROS_OK)%
-  int count = 0;
   while (ros::ok())
   {
 // %EndTag(ROS_OK)%
     /**
      * This is a message object. You stuff it with data, and then publish it.
      */
-// %Tag(FILL_MESSAGE)%
+    
+// %Tag(FILL_MESSAGE)%*
     geometry_msgs::Twist msg;
-    msg.linear.x = 1.0;
+
+    msg.linear.x = vel;
+    
     msg.angular.z = ang_vel;
+
+    if (msg.angular.z > (M_PI))
+      msg.angular.z = msg.angular.z - (2 * M_PI);
+    else if (msg.angular.z < (M_PI))
+      msg.angular.z = msg.angular.z + (2 * M_PI);
+
+    if (msg.angular.z > max_rotation)
+      msg.angular.z = max_rotation;
+    else if (msg.angular.z < -max_rotation)
+      msg.angular.z = -max_rotation;
+
+
 // %EndTag(FILL_MESSAGE)%
 
 // %Tag(ROSCONSOLE)%
@@ -146,8 +213,15 @@ int main(int argc, char **argv)
      * in the constructor above.
      */
 // %Tag(PUBLISH)%
-    chatter_pub.publish(msg);
+    cmd_vel_pub.publish(msg);
 // %EndTag(PUBLISH)%
+    if (abs(xGoal - xState) <= eps && abs(yGoal - yState) <= eps)
+    {
+      goalIndex = (goalIndex + 1) % goalsVector.size();
+      xGoal = goalsVector[goalIndex].first;
+      yGoal = goalsVector[goalIndex].second;
+      vel = 0.8;
+    }
 
 // %Tag(SPINONCE)%
     ros::spinOnce();
@@ -156,7 +230,6 @@ int main(int argc, char **argv)
 // %Tag(RATE_SLEEP)%
     loop_rate.sleep();
 // %EndTag(RATE_SLEEP)%
-    ++count;
   }
 
 

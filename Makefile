@@ -1,6 +1,7 @@
 MAKEFLAGS =--no-print-directory
 SHELL := /bin/bash
 CMAKE_BUILD_DIRECTORY := project-build
+CMAKE_PLUGINS_DIRECTORY := plugins
 
 .PHONY: compile build clearall clean clean-build
 
@@ -22,3 +23,4 @@ clean:
 
 clean-build:
 	rm -rf $(CMAKE_BUILD_DIRECTORY)
+	rm -rf $(CMAKE_PLUGINS_DIRECTORY)

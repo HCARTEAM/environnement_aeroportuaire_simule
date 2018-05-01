@@ -3,31 +3,38 @@ Faites make dans la racine du projet, le Makefile appellera CMake et compilera l
 
 # Arborescence
 
-- /models
-Placez ici les modèles utilisé par le projet sous forme de dossier contenant le nom du modèle
+- /models<br />
+Placez ici les modèles utilisés par le projet sous forme de dossier contenant le nom du modèle
 
-- /plugins
-C'est ici que sortent les plugins compilé.
+- /plugins<br />
+C'est ici que sortent les plugins compilés.
 
-- /project-sources/src/
+- /project-sources/src/<br />
 Contient les sources .cc des plugins du projets
 
-- /project-sources/include/
+- /project-sources/include/<br />
 Contient les headers .hpp utilisé par les plugins du projets
 
-# Makefile
+# Modélisation du monde
 
-- make build
+- make build<br />
 Crée le dossier project-build et appelle CMake à l'interieur
 
-- make compile
+- make compile<br />
 Compile les sources du projet dans le dossier plugins, instruction par défaut.
 
-- make clean
-Efface les plugins compilé dans le dossier plugins.
+- make clean<br />
+Efface les plugins compilés dans le dossier plugins.
 
-- make clearall
+- make clearall<br />
 Efface les plugins et le repertoire projet-build
 
-- make build-clean
+- make build-clean<br />
 Efface le repertoire project-build
+
+# Simulation du robot
+
+- cd ~/catkin_husky/<br />
+- catkin_make<br />
+- source ~/catkin_husky/devel/setup.bash<br />
+- rosrun husky_nav nav<br />
