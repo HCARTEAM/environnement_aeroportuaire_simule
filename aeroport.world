@@ -836,7 +836,7 @@
       <pose frame=''>5.25657 -7.67952 0 0 -0 0</pose>
       <plugin name='animated_bus' filename='libanimated_bus.so'/>
     </model>
-    <model name='suv'>
+    <model name='sanitationtruck'>
       <static>1</static>
       <link name='link'>
         <collision name='collision'>
@@ -873,7 +873,8 @@
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
       </link>
-      <pose frame=''>-4.90307 31.5899 0 0 -0 0</pose>
+      <pose frame=''>-4.90307 31.5899 0.082 0 -0 0</pose>
+      <plugin name='animated_sanitationtruck' filename='libanimated_sanitationtruck.so'/>
     </model>
     <model name='Construction Cone_0'>
       <link name='link'>
