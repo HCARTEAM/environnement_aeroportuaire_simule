@@ -41,7 +41,7 @@
 
 #include <sstream>
 
-static const std::vector<std::pair<double, double>> goalsVector = { {7.82, 31.4}, {-2.4, 38.6}, {-11.8, 30.5}, {-8.6, 25.6}, {-19.46, 14.2}, {11.0, -1.3}, {17.0, 9.0}}; 
+static const std::vector<std::pair<double, double>> goalsVector = { {7.82, 31.4}, {-2.4, 38.6}, {-11.8, 30.5}, {-8.6, 25.6}, {-19.46, 14.2}, {11.0, -1.3}, {14.0, 9.0}}; 
 double ang_vel = 0.0;
 double vel = 0.8;
 double eps = 2.0;
@@ -50,7 +50,7 @@ double yState = 9.0;
 double xGoal = 7.82;
 double yGoal = 31.4;
 double z_orientation = 0.0;
-double max_rotation = M_PI / 2;
+double max_rotation = M_PI / 4;
 int goalIndex = 0;
 
 
@@ -69,13 +69,9 @@ void hstateCallback(const nav_msgs::Odometry msg)
   
 void laserCallback(const sensor_msgs::LaserScan msg)
 {
-  double myPosx = xState;
-  double myPosy = yState;
-  double myz_orientation = z_orientation;
-  
   int size((msg.angle_max - msg.angle_min) / msg.angle_increment);
   int nearest((msg.angle_min - M_PI / 2) * msg.angle_increment);
-  double dist {sqrt((xGoal - myPosx) * (xGoal - myPosx) + (yGoal - myPosy) * (yGoal - myPosy))};
+  double dist {sqrt((xGoal - xState) * (xGoal - xState) + (yGoal - yState) * (yGoal - yState))};
   double maxD {3.0};
 
   for (int i = (size / 2) - (M_PI/(2* msg.angle_increment)); i <= size + (M_PI/(2* msg.angle_increment)); i++)
@@ -83,20 +79,20 @@ void laserCallback(const sensor_msgs::LaserScan msg)
       nearest = i;
   if (msg.ranges[nearest] > 5.0 || (msg.ranges[nearest] > dist))
   {
-    if (xGoal > myPosx)
-      ang_vel = atan((yGoal - myPosy)/(xGoal - myPosx));
+    if (xGoal > xState)
+      ang_vel = atan((yGoal - yState)/(xGoal - xState));
     else
     {
-      if (yGoal > myPosy)
-        ang_vel = M_PI + atan((yGoal - myPosy)/(xGoal - myPosx));
+      if (yGoal > yState)
+        ang_vel = M_PI + atan((yGoal - yState)/(xGoal - xState));
       else
-        ang_vel = -M_PI + atan((yGoal - myPosy)/(xGoal - myPosx));
+        ang_vel = -M_PI + atan((yGoal - yState)/(xGoal - xState));
     }
     ROS_INFO("ANG_VEL : [%f]", ang_vel);
-    ang_vel = ang_vel - myz_orientation;
+    ang_vel = ang_vel - z_orientation;
     if (ang_vel > (M_PI))
       ang_vel = ang_vel - (2 * M_PI);
-    if (ang_vel < (M_PI))
+    else if (ang_vel < (M_PI))
       ang_vel = ang_vel + (2 * M_PI);
   }
   else if (msg.ranges[nearest] < maxD)
@@ -169,7 +165,7 @@ int main(int argc, char **argv)
 
 
 // %Tag(LOOP_RATE)%
-  ros::Rate loop_rate(1);
+  ros::Rate loop_rate(8);
 // %EndTag(LOOP_RATE)%
 
   /**
@@ -188,13 +184,19 @@ int main(int argc, char **argv)
     geometry_msgs::Twist msg;
 
     msg.linear.x = vel;
-
+    
     msg.angular.z = ang_vel;
+
+    if (msg.angular.z > (M_PI))
+      msg.angular.z = msg.angular.z - (2 * M_PI);
+    else if (msg.angular.z < (M_PI))
+      msg.angular.z = msg.angular.z + (2 * M_PI);
 
     if (msg.angular.z > max_rotation)
       msg.angular.z = max_rotation;
-    if (msg.angular.z < -max_rotation)
+    else if (msg.angular.z < -max_rotation)
       msg.angular.z = -max_rotation;
+
 
 // %EndTag(FILL_MESSAGE)%
 

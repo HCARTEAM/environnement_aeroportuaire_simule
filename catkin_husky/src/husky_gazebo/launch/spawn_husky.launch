@@ -5,7 +5,7 @@
   <!--namespace that will be used in prefix for the topic names and nodes, recommended when spawning several robots -->
   <arg name="robot_namespace" default="/"/>
 
-  <arg name="x" default="17.0"/>
+  <arg name="x" default="14.0"/>
   <arg name="y" default="9.0"/>
   <arg name="yaw" default="0.0"/>
 
