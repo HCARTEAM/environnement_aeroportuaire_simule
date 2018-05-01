@@ -15,7 +15,7 @@ Contient les sources .cc des plugins du projets
 - /project-sources/include/<br />
 Contient les headers .hpp utilisé par les plugins du projets
 
-# Makefile
+# Modélisation du monde
 
 - make build<br />
 Crée le dossier project-build et appelle CMake à l'interieur
@@ -32,7 +32,7 @@ Efface les plugins et le repertoire projet-build
 - make build-clean<br />
 Efface le repertoire project-build
 
-# Robot Simulation
+# Simulation du robot
 
 - cd ~/catkin_husky/<br />
 - catkin_make<br />
