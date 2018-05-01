@@ -31,3 +31,10 @@ Efface les plugins et le repertoire projet-build
 
 - make build-clean<br />
 Efface le repertoire project-build
+
+# Robot Simulation
+
+- cd ~/catkin_husky/<br />
+- catkin_make<br />
+- source ~/catkin_husky/devel/setup.bash<br />
+- rosrun husky_nav nav<br />
