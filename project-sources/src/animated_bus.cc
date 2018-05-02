@@ -35,13 +35,13 @@ namespace gazebo
 
         //Create the animation of the bus
         gazebo::common::PoseAnimationPtr anim(
-          new gazebo::common::PoseAnimation("Bus", 197.345, false));
+          new gazebo::common::PoseAnimation("Bus", 260.59, true));
 
         gazebo::common::PoseKeyFrame *key;
 
         // set starting location of the bus
         key = anim->CreateKeyFrame(0);
-        key->Translation(ignition::math::Vector3d(11, -3, Zpos));
+        key->Translation(ignition::math::Vector3d(9.66879, -3, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, 0));
 
         arret = 10;
@@ -74,16 +74,55 @@ namespace gazebo
         key->Translation(ignition::math::Vector3d(25, -35, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, 1.57));
 
-        key = anim->CreateKeyFrame(197.345);
-        key->Translation(ignition::math::Vector3d(50, -35, Zpos));
+        for(auto i = 197.345; i <= 203.345; i++)
+        {
+          key = anim->CreateKeyFrame(i);
+          key->Translation(ignition::math::Vector3d(50, -35, Zpos));
+          key->Rotation(ignition::math::Quaterniond(0, 0, 1.57));
+        }
+
+
+        key = anim->CreateKeyFrame(206.345);
+        key->Translation(ignition::math::Vector3d(42, -35, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, 1.57));
 
+        key = anim->CreateKeyFrame(215.345);
+        key->Translation(ignition::math::Vector3d(42, -35, Zpos));
+        key->Rotation(ignition::math::Quaterniond(0, 0, -1.57));
+
+        key = anim->CreateKeyFrame(225.345);
+        key->Translation(ignition::math::Vector3d(25, -35, Zpos));
+        key->Rotation(ignition::math::Quaterniond(0, 0, -1.57));
+
+        key = anim->CreateKeyFrame(228.1735);
+        key->Translation(ignition::math::Vector3d(20, -30, Zpos));
+        key->Rotation(ignition::math::Quaterniond(0, 0, -0.75));
+
+        key = anim->CreateKeyFrame(234.962);
+        key->Translation(ignition::math::Vector3d(8, -18, Zpos));
+        key->Rotation(ignition::math::Quaterniond(0, 0, -0.75));
+
+        key = anim->CreateKeyFrame(236.59);
+        key->Translation(ignition::math::Vector3d(5.25, -15, Zpos));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 0));
+
+        key = anim->CreateKeyFrame(244.59);
+        key->Translation(ignition::math::Vector3d(5.25, -7.6795, Zpos));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 0));
+
+        key = anim->CreateKeyFrame(260.59);
+        key->Translation(ignition::math::Vector3d(9.66879, -3, Zpos));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 0));
+
+        int number_passenger = 20;
+
+
+
         // set the animation to the model
-        std::cout << "Set the animation" << '\n';
         _model->SetAnimation(anim);
         _anim = anim;
         _world = _model->GetWorld();
-	intervalle = (depart - arret) / double(number_passenger);
+	      intervalle = (depart - arret) / double(number_passenger);
 
         this->_updateConnection = event::Events::ConnectWorldUpdateBegin(
           boost::bind(&AnimatedBus::OnUpdate, this, _1));
@@ -147,8 +186,8 @@ namespace gazebo
       physics::WorldPtr _world;
       gazebo::common::PoseAnimationPtr _anim;
       event::ConnectionPtr _updateConnection;
-      int number_passenger = 20;
       double arret, depart, intervalle;
+      int number_passenger = 20;
       bool loaded = true, arrete = true;
   };
   GZ_REGISTER_MODEL_PLUGIN(AnimatedBus);
