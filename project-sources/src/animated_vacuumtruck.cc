@@ -34,58 +34,54 @@ namespace gazebo
 
         // create the animation
         gazebo::common::PoseAnimationPtr anim(
-              new gazebo::common::PoseAnimation("animated_vacuumtruck", 398.8851, true));
+              new gazebo::common::PoseAnimation("animated_vacuumtruck", 368.5425, true));
 
         gazebo::common::PoseKeyFrame *key;
 
         // set starting location of the box
         key = anim->CreateKeyFrame(0);
         key->Translation(ignition::math::Vector3d(-42, 60, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, -0.92));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 1.271));
 
         // set waypoint location
-        key = anim->CreateKeyFrame(3.4409);
-        key->Translation(ignition::math::Vector3d(-35, 55, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, -0.62));
+        key = anim->CreateKeyFrame(16.0943);
+        key->Translation(ignition::math::Vector3d(-6, 46, Zpos));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 0.430));;
 
-        key = anim->CreateKeyFrame(24);
-        key->Translation(ignition::math::Vector3d(-13, 44, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, -0.45));
+        key = anim->CreateKeyFrame(25.5958);
+        key->Translation(ignition::math::Vector3d(-3, 35, Zpos));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 0.558));;
 
-        //key = anim->CreateKeyFrame(26.3324);
-        //key->Translation(ignition::math::Vector3d(-8, 41, Zpos));
-        //key->Rotation(ignition::math::Quaterniond(0, 0, -0.20));
-
-        key = anim->CreateKeyFrame(34.1192);
-        key->Translation(ignition::math::Vector3d(-5, 20, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, -M_PI/2));
-
-        for (auto i=44.1192; i < 294.1192; i += 10.0){
-          // Animation de pose
-          key = anim->CreateKeyFrame(i);
-          key->Translation(ignition::math::Vector3d(-5, 32, Zpos));
-          key->Rotation(ignition::math::Quaterniond(0, 0, -M_PI/2));
-        }
-
-        key = anim->CreateKeyFrame(304.1192);
-        key->Translation(ignition::math::Vector3d(-5, 20, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, -M_PI/2));
-
-        key = anim->CreateKeyFrame(327.6895);
-        key->Translation(ignition::math::Vector3d(-25, 40, Zpos));
+        key = anim->CreateKeyFrame(27.9528);
+        key->Translation(ignition::math::Vector3d(-5, 33, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, 0));
 
-        key = anim->CreateKeyFrame(359.3671);
-        key->Translation(ignition::math::Vector3d(13, 41, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 0.25));
+        for (auto i=38.9136; i < 288.9136; i += 1.0){
+          // Animation de pose
+          key = anim->CreateKeyFrame(i);
+          key->Translation(ignition::math::Vector3d(-5, 22, Zpos));
+          key->Rotation(ignition::math::Quaterniond(0, 0, 0));
+        }
 
-        key = anim->CreateKeyFrame(387.2184);
-        key->Translation(ignition::math::Vector3d(39, 62, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 0.30));
+        key = anim->CreateKeyFrame(298.0802);
+        key->Translation(ignition::math::Vector3d(-5, 33, Zpos));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 0));
 
-        key = anim->CreateKeyFrame(398.8851);
-        key->Translation(ignition::math::Vector3d(53, 62, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 0.30));
+        key = anim->CreateKeyFrame(309.0410);
+        key->Translation(ignition::math::Vector3d(-3, 35, Zpos));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 0.558));
+
+        key = anim->CreateKeyFrame(318.5425);
+        key->Translation(ignition::math::Vector3d(-6, 46, Zpos));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 0.430));
+
+        key = anim->CreateKeyFrame(331.0425);
+        key->Translation(ignition::math::Vector3d(-18, 55, Zpos));
+        key->Rotation(ignition::math::Quaterniond(0, 0, M_PI/2));
+
+        key = anim->CreateKeyFrame(368.5425);
+        key->Translation(ignition::math::Vector3d(72, 55, Zpos));
+        key->Rotation(ignition::math::Quaterniond(0, 0, M_PI/2));
 
         // set the animation
         _parent->SetAnimation(anim);

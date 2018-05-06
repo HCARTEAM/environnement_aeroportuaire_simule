@@ -441,7 +441,7 @@
           <wrench>-96.413 -306.753 232.148 0 -0 0</wrench>
         </link>
       </model>
-      <model name='suv'>
+      <model name='vacuum_truck'>
         <pose frame=''>-4.37985 30.0374 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
@@ -826,15 +826,15 @@
       <pose frame=''>5.25657 -7.67952 0 0 -0 0</pose>
       <plugin name='animated_bus' filename='libanimated_bus.so'/>
     </model>
-    <model name='suv'>
+    <model name='vacuum_truck'>
       <static>1</static>
       <link name='link'>
         <collision name='collision'>
-          <pose frame=''>0 0 0 0 0 -1.5708</pose>
+          <pose frame=''>0 0 0 0 0 0</pose>
           <geometry>
             <mesh>
-              <scale>0.06 0.06 0.06</scale>
-              <uri>model://suv/meshes/suv.obj</uri>
+              <scale>1 1 1</scale>
+              <uri>model://vacuum_truck/meshes/vacuumTruck.dae</uri>
             </mesh>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -852,11 +852,11 @@
           </surface>
         </collision>
         <visual name='visual'>
-          <pose frame=''>0 0 0 0 0 -1.5708</pose>
+          <pose frame=''>0 0 0 0 0 0</pose>
           <geometry>
             <mesh>
-              <scale>0.06 0.06 0.06</scale>
-              <uri>model://suv/meshes/suv.obj</uri>
+              <scale>1 1 1</scale>
+              <uri>model://vacuum_truck/meshes/vacuumTruck.dae</uri>
             </mesh>
           </geometry>
         </visual>
