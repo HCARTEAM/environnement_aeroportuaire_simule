@@ -48,9 +48,15 @@ namespace gazebo
         key->Translation(ignition::math::Vector3d(-6, 46, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, 0.430));;
 
+<<<<<<< HEAD
         /*key = anim->CreateKeyFrame(25.5958);
         key->Translation(ignition::math::Vector3d(-3, 35, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, 0.558));;*/
+=======
+        key = anim->CreateKeyFrame(25.5958);
+        key->Translation(ignition::math::Vector3d(-3, 35, Zpos));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 0.558));;
+>>>>>>> 5d9f962af0a74b91a0057be2ddad5869d65ddc15
 
         key = anim->CreateKeyFrame(27.9528);
         key->Translation(ignition::math::Vector3d(-5, 33, Zpos));
@@ -67,9 +73,15 @@ namespace gazebo
         key->Translation(ignition::math::Vector3d(-5, 33, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, 0));
 
+<<<<<<< HEAD
         /*key = anim->CreateKeyFrame(309.0410);
         key->Translation(ignition::math::Vector3d(-3, 35, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, 0.558));*/
+=======
+        key = anim->CreateKeyFrame(309.0410);
+        key->Translation(ignition::math::Vector3d(-3, 35, Zpos));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 0.558));
+>>>>>>> 5d9f962af0a74b91a0057be2ddad5869d65ddc15
 
         key = anim->CreateKeyFrame(318.5425);
         key->Translation(ignition::math::Vector3d(-6, 46, Zpos));
