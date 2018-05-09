@@ -34,7 +34,7 @@ namespace gazebo
 
         // create the animation
         gazebo::common::PoseAnimationPtr anim(
-              new gazebo::common::PoseAnimation("animated_vacuumtruck", 368.5425, true));
+              new gazebo::common::PoseAnimation("animated_vacuumtruck", 358.3765, true));
 
         gazebo::common::PoseKeyFrame *key;
 
@@ -43,44 +43,48 @@ namespace gazebo
         key->Translation(ignition::math::Vector3d(-42, 60, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, 1.271));
 
+        key = anim->CreateKeyFrame(13.9692);
+        key->Translation(ignition::math::Vector3d(-10, 50, Zpos));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 0.8505));
+
         // set waypoint location
-        key = anim->CreateKeyFrame(16.0943);
+        key = anim->CreateKeyFrame(16.3262);
         key->Translation(ignition::math::Vector3d(-6, 46, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, 0.430));;
 
-        /*key = anim->CreateKeyFrame(25.5958);
+        /*key = anim->CreateKeyFrame(25.8277);
         key->Translation(ignition::math::Vector3d(-3, 35, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, 0.558));;*/
 
-        key = anim->CreateKeyFrame(27.9528);
+        key = anim->CreateKeyFrame(28.1847);
         key->Translation(ignition::math::Vector3d(-5, 33, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, 0));
 
-        for (auto i=38.9136; i < 288.9136; i += 1.0){
+        for (auto i=37.5139; i < 287.5139; i += 1.0) {
           // Animation de pose
           key = anim->CreateKeyFrame(i);
-          key->Translation(ignition::math::Vector3d(-5, 22, Zpos));
+          key->Translation(ignition::math::Vector3d(-5, 28, Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, 0));
         }
 
-        key = anim->CreateKeyFrame(298.0802);
+        key = anim->CreateKeyFrame(296.5181);
         key->Translation(ignition::math::Vector3d(-5, 33, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, 0));
 
-        /*key = anim->CreateKeyFrame(309.0410);
+        /*key = anim->CreateKeyFrame(298.8765);
         key->Translation(ignition::math::Vector3d(-3, 35, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, 0.558));*/
 
-        key = anim->CreateKeyFrame(318.5425);
+        key = anim->CreateKeyFrame(308.3765);
         key->Translation(ignition::math::Vector3d(-6, 46, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, 0.430));
 
-        key = anim->CreateKeyFrame(331.0425);
-        key->Translation(ignition::math::Vector3d(-18, 55, Zpos));
+        key = anim->CreateKeyFrame(320.8765);
+        key->Translation(ignition::math::Vector3d(-10, 50, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, M_PI/2));
 
-        key = anim->CreateKeyFrame(368.5425);
-        key->Translation(ignition::math::Vector3d(72, 55, Zpos));
+        key = anim->CreateKeyFrame(358.3765);
+        key->Translation(ignition::math::Vector3d(72, 50, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, M_PI/2));
 
         // set the animation
