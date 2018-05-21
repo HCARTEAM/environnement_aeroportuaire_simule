@@ -1,8 +1,0 @@
-prefix=/home/phoenix/ProjetUE/AirportEnvironment/catkin_husky/install
-
-Name: husky_description
-Description: Description of husky_description
-Version: 0.2.7
-Cflags: 
-Libs: -L/home/phoenix/ProjetUE/AirportEnvironment/catkin_husky/install/lib 
-Requires: 

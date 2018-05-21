@@ -1,8 +1,0 @@
-prefix=/home/phoenix/ProjetUE/AirportEnvironment/catkin_husky/install
-
-Name: husky_viz
-Description: Description of husky_viz
-Version: 0.2.2
-Cflags: 
-Libs: -L/home/phoenix/ProjetUE/AirportEnvironment/catkin_husky/install/lib 
-Requires: 

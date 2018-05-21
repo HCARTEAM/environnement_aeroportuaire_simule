@@ -1,8 +1,0 @@
-prefix=/home/phoenix/ProjetUE/AirportEnvironment/catkin_husky/install
-
-Name: husky_nav
-Description: Description of husky_nav
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/phoenix/ProjetUE/AirportEnvironment/catkin_husky/install/lib 
-Requires: 
