@@ -1,4 +1,0 @@
-/plugins
-/project-build
-/catkin_husky/*
-!/catkin_husky/src

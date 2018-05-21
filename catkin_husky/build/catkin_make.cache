@@ -1,0 +1,2 @@
+husky_control:husky_description:husky_gazebo:husky_nav:husky_viz
+-DCATKIN_DEVEL_PREFIX=/home/phoenix/ProjetUE/AirportEnvironment/catkin_husky/devel -DCMAKE_INSTALL_PREFIX=/home/phoenix/ProjetUE/AirportEnvironment/catkin_husky/install -G Unix Makefiles
