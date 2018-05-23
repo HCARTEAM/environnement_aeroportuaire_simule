@@ -34,7 +34,7 @@ Efface le repertoire project-build
 
 # Simulation du robot
 
-- cd ~/catkin_husky/<br />
+- cd ./catkin_husky/<br />
 - catkin_make<br />
-- source ~/catkin_husky/devel/setup.bash<br />
+- source ./catkin_husky/devel/setup.bash<br />
 - rosrun husky_nav nav<br />
