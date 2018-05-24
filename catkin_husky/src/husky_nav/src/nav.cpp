@@ -41,6 +41,9 @@
 
 #include <sstream>
 
+
+// GLOBAL VARIABLES
+// TO DO == DELETE THOSE !
 static const std::vector<std::pair<double, double>> goalsVector = { {7.82, 31.4}, {-2.4, 38.6}, {-11.8, 30.5}, {-8.6, 25.6}, {-19.46, 14.2}, {11.0, -1.3}, {14.0, 9.0}}; 
 double ang_vel = 0.0;
 double vel = 0.8;
@@ -102,6 +105,8 @@ void laserCallback(const sensor_msgs::LaserScan msg)
     if (nearest > ((size/2) - 1))
       ang_vel = -ang_vel ;
   }
+  else
+  	ang_vel = 0.0
   if (dist <= vel)
     vel = dist;
   else
