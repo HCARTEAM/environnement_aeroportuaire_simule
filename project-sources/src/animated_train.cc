@@ -36,6 +36,7 @@ namespace gazebo
         this->_updateConnection = event::Events::ConnectWorldUpdateBegin(
           boost::bind(&AnimatedTrain::OnUpdate, this, _1));
 
+        
       }
 
     public:
@@ -104,17 +105,16 @@ namespace gazebo
         for (auto i = 63; i <= 303; i++)
         {
           key = anim->CreateKeyFrame(i);
-            key->Translation(ignition::math::Vector3d(-5.983, 5.146, Zpos));
-            key->Rotation(ignition::math::Quaterniond(0, 0, 3.14));
+    	  key->Translation(ignition::math::Vector3d(-5.983, 5.146, Zpos));
+          key->Rotation(ignition::math::Quaterniond(0, 0, 3.14));
         }
 
-
         key = anim->CreateKeyFrame(309);
-        key->Translation(ignition::math::Vector3d(-12.68 + x[7], 1.837 + y[7], Zpos));
+        key->Translation(ignition::math::Vector3d(-18.46 + x[7], 4.146 + y[7], Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, -2.87));
 
         key = anim->CreateKeyFrame(320);
-        key->Translation(ignition::math::Vector3d(-18.46 + x[8], -9.06 + y[8], Zpos));
+        key->Translation(ignition::math::Vector3d(-16 + x[8], -9.06 + y[8], Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, -1.41));
 
         key = anim->CreateKeyFrame(327.86);
