@@ -65,10 +65,6 @@ void hstateCallback(const nav_msgs::Odometry &msg)
     double siny = 2.0 * (msg.pose.pose.orientation.w * msg.pose.pose.orientation.z + msg.pose.pose.orientation.x * msg.pose.pose.orientation.y);
     double cosy = 1.0 - 2.0 * (msg.pose.pose.orientation.y * msg.pose.pose.orientation.y + msg.pose.pose.orientation.z * msg.pose.pose.orientation.z);  
     z_orientation = atan2(siny, cosy);
-
-    ROS_INFO("G_POS : [%f, %f]", xGoal, yGoal);
-    ROS_INFO("R_POS : [%f, %f]", xState, yState);
-    ROS_INFO("Z_ORIENTATION : [%f]", z_orientation);
 }
   
 void laserCallback(const sensor_msgs::LaserScan &msg)
@@ -80,7 +76,7 @@ void laserCallback(const sensor_msgs::LaserScan &msg)
   double thetaChange;
 
   for (int i = (size / 2) - (M_PI/(2* msg.angle_increment)); i <= size + (M_PI/(2* msg.angle_increment)); i++)
-    if (msg.ranges[i] < msg.ranges[nearest] && msg.ranges[i] > 0)
+    if (msg.ranges[i] < msg.ranges[nearest] && msg.ranges[i] > 0.5)
       nearest = i;
   if (msg.ranges[nearest] > 5.0 || (msg.ranges[nearest] > dist))
   {
@@ -159,7 +155,7 @@ int main(int argc, char **argv)
 
 
 // %Tag(LOOP_RATE)%
-  ros::Rate loop_rate(40);
+  ros::Rate loop_rate(8);
 // %EndTag(LOOP_RATE)%
 
   /**
