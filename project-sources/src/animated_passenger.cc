@@ -33,6 +33,7 @@ namespace gazebo
       this->_model = _parent;
 
       double Zpos(_model->GetWorldPose().pos.z);
+      
 
       const math::Pose& modelPose = _model->GetWorldPose();
 
@@ -47,9 +48,11 @@ namespace gazebo
         key->Translation(modelPose.pos.Ign());
         key->Rotation(modelPose.rot.Ign());
 
+        double x = math::Rand::GetDblUniform(-0.5, 0.5);
+        double y = math::Rand::GetDblUniform(-0.5, 0.5);
         // set final location of the passenger
         key = anim->CreateKeyFrame(10);
-        key->Translation(ignition::math::Vector3d(7.23907, -8.00261, Zpos));
+        key->Translation(ignition::math::Vector3d(7.23907 + x, -8.00261 + y, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, -0, 0));
 
         // set the animation
@@ -61,6 +64,7 @@ namespace gazebo
     }
 
     public: void OnUpdate(const common::UpdateInfo & /*_info*/) {
+    
       /* Destroy the passenger when they arrive */
       if (_anim->GetTime() >= _anim->GetLength()) {
           _model->GetWorld()->RemoveModel(_model);

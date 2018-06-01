@@ -179,7 +179,6 @@ namespace gazebo
             arrete = true;
             number_passenger = 20;
             hasAnimation = false;
-
           }
         }
 
