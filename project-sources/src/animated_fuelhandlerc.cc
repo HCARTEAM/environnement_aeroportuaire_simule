@@ -25,12 +25,13 @@ namespace gazebo
 {
   class AnimatedFuelHandlerC : public ModelPlugin
   {
-    public: void Load(physics::ModelPtr _parent, sdf::ElementPtr /*_sdf*/)
+    public:
+    void Load(physics::ModelPtr _parent, sdf::ElementPtr /*_sdf*/)
     {
       // Store the pointer to the model
-      this->model = _parent;
+      this->_model = _parent;
 
-      double Zpos(model->GetWorldPose().pos.z);
+      double Zpos(_model->GetWorldPose().pos.z);
 
         // create the animation
         gazebo::common::PoseAnimationPtr anim(
@@ -174,14 +175,30 @@ namespace gazebo
         key->Rotation(ignition::math::Quaterniond(0, 0, 1.495));
 
 
-
-
         // set the animation
         _parent->SetAnimation(anim);
+        _anim = anim;
+
+        this->updateConnection = event::Events::ConnectWorldUpdateBegin(
+          boost::bind(&AnimatedFuelHandlerC::OnUpdate, this, _1));
+    }
+
+    public:
+    void OnUpdate(const common::UpdateInfo & /*_info*/) {
+      if (_anim->GetTime() >= _anim->GetLength()) {
+          _model->GetWorld()->RemoveModel(_model);
+      }
+
     }
 
     // Pointer to the model
-    private: physics::ModelPtr model;
+    private:
+        physics::ModelPtr _model;
+
+    //Pointer to the Pose Animation
+    private:
+        gazebo::common::PoseAnimationPtr _anim;
+
 
     // Pointer to the update event connection
     private: event::ConnectionPtr updateConnection;
