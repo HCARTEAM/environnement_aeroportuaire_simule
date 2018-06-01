@@ -94,11 +94,7 @@ void laserCallback(const sensor_msgs::LaserScan &msg)
       ang_vel = -ang_vel ;
   }
   else
-<<<<<<< HEAD
     ang_vel = 0.0;
-=======
-  	ang_vel = 0.0
->>>>>>> 250fe32be137f608bb86cbbdb2adeaf61cc1f467
   if (dist <= vel)
     vel = dist;
   else
