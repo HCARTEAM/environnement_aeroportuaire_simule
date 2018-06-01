@@ -51,10 +51,11 @@ namespace gazebo
         {
           hasAnimation = true;
           loaded = true;
+          double Zpos(_model->GetWorldPose().pos.z);
+
             //Create the animation of the bus
           gazebo::common::PoseAnimationPtr anim(
             new gazebo::common::PoseAnimation("Bus", 260.59, false));
-          double Zpos(_model->GetWorldPose().pos.z);
 
           gazebo::common::PoseKeyFrame *key;
 
@@ -136,13 +137,10 @@ namespace gazebo
           key->Rotation(ignition::math::Quaterniond(0, 0, 1.57));
 
           // set the animation to the model
-
-
           _model->SetAnimation(anim);
           _anim = anim;
           _world = _model->GetWorld();
           intervalle = (depart - arret) / double(number_passenger);
-
 
           
           this->_updateConnection = event::Events::ConnectWorldUpdateBegin(
