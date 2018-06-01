@@ -30,8 +30,6 @@ namespace gazebo
 
       // Store the pointer to the model
       this->_model = _parent;
-      myfile.open("test.txt");
-
 
       number_foodHandler = 1;
       hasAnimation = false;
@@ -125,7 +123,7 @@ namespace gazebo
 
 
           // set the animation
-          _parent->SetAnimation(anim);
+          _model->SetAnimation(anim);
           _anim = anim;
           _world = _model->GetWorld();
         }
@@ -186,10 +184,11 @@ namespace gazebo
       physics::WorldPtr _world;
       gazebo::common::PoseAnimationPtr _anim;
       int number_foodHandler;
+      bool hasAnimation;
 
 
     // Pointer to the update event connection
-    private: event::ConnectionPtr updateConnection;
+    private: event::ConnectionPtr _updateConnection;
   };
 
   // Register this plugin with the simulator
