@@ -36,7 +36,6 @@ namespace gazebo
         this->_updateConnection = event::Events::ConnectWorldUpdateBegin(
           boost::bind(&AnimatedTrain::OnUpdate, this, _1));
 
-        
       }
 
     public:

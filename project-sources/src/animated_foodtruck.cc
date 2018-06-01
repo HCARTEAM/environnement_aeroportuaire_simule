@@ -51,8 +51,16 @@ namespace gazebo
 
           for (int i = 0; i < 11; ++i)
           {
-            x.push_back(math::Rand::GetDblUniform(-1.0, 1.0));
-            y.push_back(math::Rand::GetDblUniform(-1.0, 1.0));
+            if (i > 3 && i < 8)
+            {
+              x.push_back(math::Rand::GetDblUniform(-0.5, 0.5));
+              y.push_back(math::Rand::GetDblUniform(-0.5, 0.5));
+            }
+            else
+            {
+              x.push_back(math::Rand::GetDblUniform(-1.0, 1.0));
+              y.push_back(math::Rand::GetDblUniform(-1.0, 1.0));
+            }
           }
           // create the animation
           gazebo::common::PoseAnimationPtr anim(
@@ -125,7 +133,7 @@ namespace gazebo
           _model->SetAnimation(anim);
           _anim = anim;
           _world = _model->GetWorld();
-          
+
           this->_updateConnection = event::Events::ConnectWorldUpdateBegin(
             boost::bind(&AnimatedFoodTruck::OnUpdate, this, _1));
         }
