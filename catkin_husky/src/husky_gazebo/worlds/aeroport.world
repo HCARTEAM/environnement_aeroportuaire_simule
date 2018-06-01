@@ -826,15 +826,15 @@
       <pose frame=''>5.25657 -7.67952 0 0 -0 0</pose>
       <plugin name='animated_bus' filename='libanimated_bus.so'/>
     </model>
-    <model name='suv'>
+    <model name='vacuum_truck'>
       <static>1</static>
       <link name='link'>
         <collision name='collision'>
           <pose frame=''>0 0 0 0 0 -1.5708</pose>
           <geometry>
             <mesh>
-              <scale>0.06 0.06 0.06</scale>
-              <uri>model://suv/meshes/suv.obj</uri>
+              <scale>0.025 0.025 0.025</scale>
+              <uri>model://ambulance/meshes/ambulance.obj</uri>
             </mesh>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -855,8 +855,8 @@
           <pose frame=''>0 0 0 0 0 -1.5708</pose>
           <geometry>
             <mesh>
-              <scale>0.06 0.06 0.06</scale>
-              <uri>model://suv/meshes/suv.obj</uri>
+              <scale>0.025 0.025 0.025</scale>
+              <uri>model://ambulance/meshes/ambulance.obj</uri>
             </mesh>
           </geometry>
         </visual>

@@ -83,7 +83,7 @@ namespace gazebo
           key->Rotation(ignition::math::Quaterniond(0, 0, -0.09));
 
       
-          arret = 27.638;
+          arret = 35.7135;
           depart = arret + 150;
       
           for(auto i = arret; i <= depart; i+=5)
@@ -92,29 +92,33 @@ namespace gazebo
             key->Translation(ignition::math::Vector3d(9.66879, -4.90602, Zpos));
             key->Rotation(ignition::math::Quaterniond(0, -0, 0));
           }
+	
+	  key = anim->CreateKeyFrame(190.7135);
+          key->Translation(ignition::math::Vector3d(9.66879, -4.90602, Zpos));
+          key->Rotation(ignition::math::Quaterniond(0, -0, 0));
 
-          key = anim->CreateKeyFrame(187.638);
-          key->Translation(ignition::math::Vector3d(5.25 + x[4], -7.6795 + y[4], Zpos));
+          key = anim->CreateKeyFrame(195.7135);
+          key->Translation(ignition::math::Vector3d(9.66879 + x[4], -7.6795 + y[4], Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, 0));
 
-          key = anim->CreateKeyFrame(193.738);
-          key->Translation(ignition::math::Vector3d(5.25 + x[5], -15 + y[5], Zpos));
+          key = anim->CreateKeyFrame(201.8135);
+          key->Translation(ignition::math::Vector3d(9.66879 + x[5], -15 + y[5], Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, 0));
 
-          key = anim->CreateKeyFrame(195.3663);
-          key->Translation(ignition::math::Vector3d(8 + x[6], -18 + y[6], Zpos));
+          key = anim->CreateKeyFrame(203.44);
+          key->Translation(ignition::math::Vector3d(9.66879 + x[6], -18 + y[6], Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, 0.75));
 
-          key = anim->CreateKeyFrame(202.1548);
+          key = anim->CreateKeyFrame(210.2299);
           key->Translation(ignition::math::Vector3d(20 + x[7], -30 + y[7], Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, 0.75));
 
-          key = anim->CreateKeyFrame(204.983);
+          key = anim->CreateKeyFrame(213.05849);
           key->Translation(ignition::math::Vector3d(25 + x[8], -35 + y[8], Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, 1.57));
 
-          key = anim->CreateKeyFrame(214.983);
-          key->Translation(ignition::math::Vector3d(25 + x[9], -35 + y[9], Zpos));
+          key = anim->CreateKeyFrame(223.05849);
+          key->Translation(ignition::math::Vector3d(50 + x[9], -35 + y[9], Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, 1.57));
 
           // set the animation to the model
@@ -172,7 +176,7 @@ namespace gazebo
   	        arret += intervalle;
             loaded = number_passenger != 0;
           }
-          else if (temps > 214.983)
+          else if (temps > 223.05849)
           {
             _model->StopAnimation();
             loaded = true;
