@@ -126,10 +126,10 @@
         </link>
       </model>
       <model name='Construction Cone_0_clone_2'>
-        <pose frame=''>-5.17131 35.4038 0.081905 0 -0 0.003324</pose>
+        <pose frame=''>-4.8 31.58 0.081905 0 -0 0.003324</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-5.17131 35.4038 0.081905 0 -0 0.003324</pose>
+          <pose frame=''>-4.8 31.58 0.081905 0 -0 0.003324</pose>
           <velocity>0 0 4.3e-05 9.5e-05 -0.000201 0</velocity>
           <acceleration>0 0 0.431625 1.26486 -0.873935 0</acceleration>
           <wrench>0 0 0.431625 0 -0 0</wrench>
@@ -146,10 +146,10 @@
         </link>
       </model>
       <model name='Construction Cone_0_clone_4'>
-        <pose frame=''>11.2827 18.3707 0.081905 0 0 -0.000593</pose>
+        <pose frame=''>14.78 20.34 0.081905 0 0 -0.000593</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>11.2827 18.3707 0.081905 0 0 -0.000593</pose>
+          <pose frame=''>14.78 20.34 0.081905 0 0 -0.000593</pose>
           <velocity>0 0 7e-06 0.000352 -0.00044 -0</velocity>
           <acceleration>0 -1e-06 0.426468 1.68061 0.17835 0</acceleration>
           <wrench>0 -1e-06 0.426468 0 -0 0</wrench>
@@ -166,10 +166,10 @@
         </link>
       </model>
       <model name='Construction Cone_0_clone_6'>
-        <pose frame=''>-7.99639 21.7749 0.081905 0 0 -1.10737</pose>
+        <pose frame=''>-4.42 20.94 0.081905 0 0 -1.10737</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-7.99639 21.7749 0.081905 0 0 -1.10737</pose>
+          <pose frame=''>-4.42 20.94 0.081905 0 0 -1.10737</pose>
           <velocity>0 0 -1e-06 1.5e-05 5.1e-05 0</velocity>
           <acceleration>0 0 -0.073716 -0.479515 0.671783 0</acceleration>
           <wrench>0 0 -0.073716 0 -0 0</wrench>
@@ -411,37 +411,7 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='person_standing'>
-        <pose frame=''>11.5108 7.25091 0.081905 -1e-06 1e-06 2.55146</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose frame=''>11.5108 7.25091 0.081905 -1e-06 1e-06 2.55146</pose>
-          <velocity>-6e-06 -1.9e-05 0.00077 -2.6e-05 0.000373 -7.6e-05</velocity>
-          <acceleration>2.68216 0.050699 1.49416 2.98148 0.287937 -3.09676</acceleration>
-          <wrench>214.573 4.05591 119.533 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='person_walking'>
-        <pose frame=''>2.80278 22.854 0.081906 1e-06 1e-06 -1.02645</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose frame=''>2.80278 22.854 0.081906 1e-06 1e-06 -1.02645</pose>
-          <velocity>8e-05 -5.7e-05 0.001405 -0.000678 0.000567 -0.000238</velocity>
-          <acceleration>2.23115 3.29125 2.77258 -0.695992 1.37807 -2.97118</acceleration>
-          <wrench>178.492 263.3 221.806 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='person_walking_clone'>
-        <pose frame=''>-7.19993 8.25189 0.081906 -1e-06 1e-06 0.117812</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose frame=''>-7.19993 8.25189 0.081906 -1e-06 1e-06 0.117812</pose>
-          <velocity>0.000108 -3.5e-05 0.001572 0.00088 -0.000179 0.000274</velocity>
-          <acceleration>-1.20516 -3.83441 2.90185 0.790049 -1.42287 2.72561</acceleration>
-          <wrench>-96.413 -306.753 232.148 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='suv'>
+      <model name='vacuum_truck'>
         <pose frame=''>-4.37985 30.0374 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
@@ -449,16 +419,6 @@
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='unique_sphere'>
-        <pose frame=''>5.0511 -2.42422 0.043831 1e-06 -1e-06 1.04632</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose frame=''>5.0511 -2.42422 0.243831 1e-06 -1e-06 1.04632</pose>
-          <velocity>0 0 -33.6826 0 -0 0</velocity>
-          <acceleration>0 0 -9.8 0 -0 0</acceleration>
-          <wrench>0 0 -9.8 0 -0 0</wrench>
         </link>
       </model>
       <light name='sun'>
@@ -564,222 +524,6 @@
       <static>1</static>
       <allow_auto_disable>1</allow_auto_disable>
       <pose frame=''>-4.20225 -1.63845 0 0 -0 0</pose>
-    </model>
-    <model name='person_walking'>
-      <link name='link'>
-        <inertial>
-          <pose frame=''>0 0 0.95 0 -0 0</pose>
-          <mass>80</mass>
-          <inertia>
-            <ixx>27.82</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>24.88</iyy>
-            <iyz>0</iyz>
-            <izz>4.57</izz>
-          </inertia>
-        </inertial>
-        <collision name='bottom'>
-          <pose frame=''>0 0 0.01 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.35 0.75 0.02</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='person'>
-          <pose frame=''>0 0 -0.02 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://person_walking/meshes/walking.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <pose frame=''>0 0 -0.02 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://person_walking/meshes/walking.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-        </visual>
-        <self_collide>0</self_collide>
-        <kinematic>0</kinematic>
-        <gravity>1</gravity>
-      </link>
-      <pose frame=''>-2.33861 28.0337 0 0 -0 0</pose>
-    </model>
-    <model name='person_walking_clone'>
-      <link name='link'>
-        <inertial>
-          <pose frame=''>0 0 0.95 0 -0 0</pose>
-          <mass>80</mass>
-          <inertia>
-            <ixx>27.82</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>24.88</iyy>
-            <iyz>0</iyz>
-            <izz>4.57</izz>
-          </inertia>
-        </inertial>
-        <collision name='bottom'>
-          <pose frame=''>0 0 0.01 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.35 0.75 0.02</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='person'>
-          <pose frame=''>0 0 -0.02 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://person_walking/meshes/walking.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <pose frame=''>0 0 -0.02 0 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://person_walking/meshes/walking.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-        </visual>
-        <self_collide>0</self_collide>
-        <kinematic>0</kinematic>
-        <gravity>1</gravity>
-      </link>
-      <pose frame=''>-7.68271 5.54698 0.049999 -2e-06 1e-06 0.000491</pose>
-    </model>
-    <model name='person_standing'>
-      <link name='link'>
-        <inertial>
-          <pose frame=''>0 -0.1 0.95 0 -0 0</pose>
-          <mass>80</mass>
-          <inertia>
-            <ixx>24.88</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>25.73</iyy>
-            <iyz>0</iyz>
-            <izz>2.48</izz>
-          </inertia>
-        </inertial>
-        <collision name='bottom'>
-          <pose frame=''>0 -0.1 0.01 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.5 0.35 0.02</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='person'>
-          <pose frame=''>0 0 0.02 0.04 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://person_standing/meshes/standing.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <pose frame=''>0 0 0.02 0.04 -0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>model://person_standing/meshes/standing.dae</uri>
-              <scale>1 1 1</scale>
-            </mesh>
-          </geometry>
-        </visual>
-        <self_collide>0</self_collide>
-        <kinematic>0</kinematic>
-        <gravity>1</gravity>
-      </link>
-      <pose frame=''>2.63429 3.1264 0 0 -0 0</pose>
     </model>
     <gui fullscreen='0'>
       <camera name='user_camera'>
