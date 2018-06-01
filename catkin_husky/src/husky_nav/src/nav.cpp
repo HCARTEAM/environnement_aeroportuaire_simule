@@ -80,7 +80,7 @@ void laserCallback(const sensor_msgs::LaserScan &msg)
   double thetaChange;
 
   for (int i = (size / 2) - (M_PI/(2* msg.angle_increment)); i <= size + (M_PI/(2* msg.angle_increment)); i++)
-    if (msg.ranges[i] < msg.ranges[nearest] && msg.ranges[i] > 0.5)
+    if (msg.ranges[i] < msg.ranges[nearest] && msg.ranges[i] > 0)
       nearest = i;
   if (msg.ranges[nearest] > 5.0 || (msg.ranges[nearest] > dist))
   {
@@ -94,7 +94,11 @@ void laserCallback(const sensor_msgs::LaserScan &msg)
       ang_vel = -ang_vel ;
   }
   else
+<<<<<<< HEAD
     ang_vel = 0.0;
+=======
+  	ang_vel = 0.0
+>>>>>>> 250fe32be137f608bb86cbbdb2adeaf61cc1f467
   if (dist <= vel)
     vel = dist;
   else
