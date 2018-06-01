@@ -71,19 +71,19 @@ namespace gazebo
 
         key = anim->CreateKeyFrame(238.17);
         key->Translation(ignition::math::Vector3d(-33, 14.5, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 1.57));
+        key->Rotation(ignition::math::Quaterniond(0, 0, -1.57));
 
         key = anim->CreateKeyFrame(251.9);
         key->Translation(ignition::math::Vector3d(-33, 53, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 1.57));
+        key->Rotation(ignition::math::Quaterniond(0, 0, -1.57));
 
         key = anim->CreateKeyFrame(255.2);
         key->Translation(ignition::math::Vector3d(-26, 59, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 0));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 3.14));
 
         key = anim->CreateKeyFrame(267.5);
         key->Translation(ignition::math::Vector3d(8.5, 59, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 0));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 3.14));
 
         key = anim->CreateKeyFrame(273.18);
         key->Translation(ignition::math::Vector3d(15, 54.5, Zpos));
@@ -107,19 +107,19 @@ namespace gazebo
 
         key = anim->CreateKeyFrame(508.4);
         key->Translation(ignition::math::Vector3d(15.5, 7, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 0));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 3.14));
 
         key = anim->CreateKeyFrame(514.5);
         key->Translation(ignition::math::Vector3d(24, 7, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 0));
+        key->Rotation(ignition::math::Quaterniond(0, 0, 3.14));
 
         key = anim->CreateKeyFrame(520);
         key->Translation(ignition::math::Vector3d(30, 12, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 1.22));
+        key->Rotation(ignition::math::Quaterniond(0, 0, -1.92));
 
         key = anim->CreateKeyFrame(532.8);
         key->Translation(ignition::math::Vector3d(41, 46, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 1.22));
+        key->Rotation(ignition::math::Quaterniond(0, 0, -1.92));
 
         // set the animation
         _parent->SetAnimation(anim);

@@ -43,6 +43,7 @@ namespace gazebo
 
         // set starting location of the box
         key = anim->CreateKeyFrame(0);
+
         key->Translation(ignition::math::Vector3d(21, -48.35, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, 0));
 
@@ -50,6 +51,7 @@ namespace gazebo
         key = anim->CreateKeyFrame(8.167);
         key->Translation(ignition::math::Vector3d(1.87, -48.35, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, 0));
+        
 
         key = anim->CreateKeyFrame(11.16);
         key->Translation(ignition::math::Vector3d(-4.5, -42.9, Zpos));
@@ -58,6 +60,8 @@ namespace gazebo
         key = anim->CreateKeyFrame(25.4);
         key->Translation(ignition::math::Vector3d(-10.67, -3.49, Zpos));
         key->Rotation(ignition::math::Quaterniond(0, 0, -1.48));
+
+
 
         key = anim->CreateKeyFrame(30.81);
         key->Translation(ignition::math::Vector3d(-16.7, 1.076, Zpos));

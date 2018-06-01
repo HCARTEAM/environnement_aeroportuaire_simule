@@ -21,6 +21,8 @@
 #include <ignition/math.hh>
 #include <stdio.h>
 #include <sae_globals.hh>
+#include <iostream>
+#include <fstream>
 
 namespace gazebo
 {
@@ -30,153 +32,177 @@ namespace gazebo
       void Load(physics::ModelPtr _parent, sdf::ElementPtr /*_sdf*/) {
 
         _model = _parent;
-
-        double Zpos(_model->GetWorldPose().pos.z);
-
-        //Create the animation of the bus
-        gazebo::common::PoseAnimationPtr anim(
-          new gazebo::common::PoseAnimation("Bus", 260.59, true));
-
-        gazebo::common::PoseKeyFrame *key;
-
-        // set starting location of the bus
-        key = anim->CreateKeyFrame(0);
-        key->Translation(ignition::math::Vector3d(9.66879, -3, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 0));
-
-        arret = 10;
-        depart = 160;
-
-        for(auto i = arret; i <= depart; i+=10)
-        {
-          key = anim->CreateKeyFrame(i);
-          key->Translation(ignition::math::Vector3d(9.66879, -4.90602, Zpos));
-          key->Rotation(ignition::math::Quaterniond(0, -0, 0));
-        }
-
-        key = anim->CreateKeyFrame(170);
-        key->Translation(ignition::math::Vector3d(5.25, -7.6795, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 0));
-
-        key = anim->CreateKeyFrame(176.1);
-        key->Translation(ignition::math::Vector3d(5.25, -15, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 0));
-
-        key = anim->CreateKeyFrame(177.728);
-        key->Translation(ignition::math::Vector3d(8, -18, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 0.75));
-
-        key = anim->CreateKeyFrame(184.5165);
-        key->Translation(ignition::math::Vector3d(20, -30, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 0.75));
-
-        key = anim->CreateKeyFrame(187.345);
-        key->Translation(ignition::math::Vector3d(25, -35, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 1.57));
-
-        for(auto i = 197.345; i <= 203.345; i++)
-        {
-          key = anim->CreateKeyFrame(i);
-          key->Translation(ignition::math::Vector3d(50, -35, Zpos));
-          key->Rotation(ignition::math::Quaterniond(0, 0, 1.57));
-        }
+        myfile.open("test.txt");
 
 
-        key = anim->CreateKeyFrame(206.345);
-        key->Translation(ignition::math::Vector3d(42, -35, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 1.57));
-
-        key = anim->CreateKeyFrame(215.345);
-        key->Translation(ignition::math::Vector3d(42, -35, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, -1.57));
-
-        key = anim->CreateKeyFrame(225.345);
-        key->Translation(ignition::math::Vector3d(25, -35, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, -1.57));
-
-        key = anim->CreateKeyFrame(228.1735);
-        key->Translation(ignition::math::Vector3d(20, -30, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, -0.75));
-
-        key = anim->CreateKeyFrame(234.962);
-        key->Translation(ignition::math::Vector3d(8, -18, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, -0.75));
-
-        key = anim->CreateKeyFrame(236.59);
-        key->Translation(ignition::math::Vector3d(5.25, -15, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 0));
-
-        key = anim->CreateKeyFrame(244.59);
-        key->Translation(ignition::math::Vector3d(5.25, -7.6795, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 0));
-
-        key = anim->CreateKeyFrame(260.59);
-        key->Translation(ignition::math::Vector3d(9.66879, -3, Zpos));
-        key->Rotation(ignition::math::Quaterniond(0, 0, 0));
-
-        int number_passenger = 20;
-
-
-
-        // set the animation to the model
-        _model->SetAnimation(anim);
-        _anim = anim;
-        _world = _model->GetWorld();
-	      intervalle = (depart - arret) / double(number_passenger);
-
+        arrete = true;
+        number_passenger = 20;
+        hasAnimation = false;
         this->_updateConnection = event::Events::ConnectWorldUpdateBegin(
           boost::bind(&AnimatedBus::OnUpdate, this, _1));
+
+        
       }
 
     public:
       void OnUpdate(const common::UpdateInfo & /*_info*/) {
-        double temps = _anim->GetTime();
 
-        if (loaded && temps > arret && temps < depart) {
-          const math::Pose &modelPose = _model->GetWorldPose();
+        if (!hasAnimation)
+        {
+          hasAnimation = true;
+          loaded = true;
+            //Create the animation of the bus
+          gazebo::common::PoseAnimationPtr anim(
+            new gazebo::common::PoseAnimation("Bus", 260.59, false));
+          double Zpos(_model->GetWorldPose().pos.z);
 
-          sdf::SDF passengerSDF;
-          std::stringstream passengerDesc;
-          passengerDesc <<
-			"<sdf version ='1.4'>\
-                         <model name ='passenger'>\
-                           <pose> 4.07524 0.063808 0.112085 1e-06 -1e-06 1.513</pose>\
-                           <link name ='link'>\
-                             <pose>0 0 0.2 0 0 0</pose>\
-                             <collision name ='collision'>\
-                               <geometry>\
-								<mesh>\
-				 					<scale>1 1 1</scale>\
-                                 <uri>model://person_walking/meshes/walking.dae</uri>\
-								</mesh>\
-                               </geometry>\
-                             </collision>\
-                             <visual name ='visual'>\
-                               <geometry>\
-                               	<mesh>\
-				 					<scale>1 1 1</scale>\
-                                 <uri>model://person_walking/meshes/walking.dae</uri>\
-								</mesh>\
-                               </geometry>\
-                             </visual>\
-                           </link>\
-                           <plugin name='animated_passenger' filename='libanimated_passenger.so'/>\
-                         </model>\
-                       </sdf>";
-								/* <mesh>\
-				 					<scale>1 1 1</scale>\
-                                 <uri>model://person_walking/meshes/walking.dae</uri>\
-								</mesh>\ */
-          passengerSDF.SetFromString(passengerDesc.str());
-          // Demonstrate using a custom model name.
-          sdf::ElementPtr model = passengerSDF.Root()->GetElement("model");
-          model->GetAttribute("name")->SetFromString("unique_passenger");
-          _world->InsertModelSDF(passengerSDF);
-	  //_world->InsertModelFile("model://passenger");
-          number_passenger--;
-	  arret += intervalle;
-          loaded = number_passenger != 0;
+          gazebo::common::PoseKeyFrame *key;
 
+          // set starting location of the bus
+          x = math::Rand::GetDblUniform(-1.0, 1.0);
+          y = math::Rand::GetDblUniform(-1.0, 1.0);
+          myfile << "x = " << x << ", y = "  << y << std::endl;
+          key = anim->CreateKeyFrame(0);
+          key->Translation(ignition::math::Vector3d(46.97 + x, -31.42 + y, Zpos));
+          key->Rotation(ignition::math::Quaterniond(0, 0, -1.814));
+
+          x = math::Rand::GetDblUniform(-1.0, 1.0);
+          y = math::Rand::GetDblUniform(-1.0, 1.0);
+          myfile << "x = " << x << ", y = "  << y << std::endl;
+          key = anim->CreateKeyFrame(14.56677);
+          key->Translation(ignition::math::Vector3d(11.67 + x, -22.47 + y, Zpos));
+          key->Rotation(ignition::math::Quaterniond(0, 0, -1.814));
+
+          x = math::Rand::GetDblUniform(-1.0, 1.0);
+          y = math::Rand::GetDblUniform(-1.0, 1.0);
+          myfile << "x = " << x << ", y = "  << y << std::endl;
+          key = anim->CreateKeyFrame(20.1888);
+          key->Translation(ignition::math::Vector3d(4.924 + x, -22.548 + y, Zpos));
+          key->Rotation(ignition::math::Quaterniond(0, 0, -1.371));
+
+          x = math::Rand::GetDblUniform(-1.0, 1.0);
+          y = math::Rand::GetDblUniform(-1.0, 1.0);
+          myfile << "x = " << x << ", y = "  << y << std::endl;
+          key = anim->CreateKeyFrame(26.805);
+          key->Translation(ignition::math::Vector3d(8.674 + x, -15.55 + y, Zpos));
+          key->Rotation(ignition::math::Quaterniond(0, 0, -0.09));
+
+      
+          arret = 27.638;
+          depart = arret + 150;
+      
+          for(auto i = arret; i <= depart; i+=5)
+          {
+            key = anim->CreateKeyFrame(i);
+            key->Translation(ignition::math::Vector3d(9.66879, -4.90602, Zpos));
+            key->Rotation(ignition::math::Quaterniond(0, -0, 0));
+          }
+
+          x = math::Rand::GetDblUniform(-1.0, 1.0);
+          y = math::Rand::GetDblUniform(-1.0, 1.0);
+          key = anim->CreateKeyFrame(187.638);
+          key->Translation(ignition::math::Vector3d(5.25 + x, -7.6795 + y, Zpos));
+          key->Rotation(ignition::math::Quaterniond(0, 0, 0));
+
+          x = math::Rand::GetDblUniform(-1.0, 1.0);
+          y = math::Rand::GetDblUniform(-1.0, 1.0);
+          key = anim->CreateKeyFrame(193.738);
+          key->Translation(ignition::math::Vector3d(5.25 + x, -15 + y, Zpos));
+          key->Rotation(ignition::math::Quaterniond(0, 0, 0));
+
+          x = math::Rand::GetDblUniform(-1.0, 1.0);
+          y = math::Rand::GetDblUniform(-1.0, 1.0);
+          key = anim->CreateKeyFrame(195.3663);
+          key->Translation(ignition::math::Vector3d(8 + x, -18 + y, Zpos));
+          key->Rotation(ignition::math::Quaterniond(0, 0, 0.75));
+
+          x = math::Rand::GetDblUniform(-1.0, 1.0);
+          y = math::Rand::GetDblUniform(-1.0, 1.0);
+          key = anim->CreateKeyFrame(202.1548);
+          key->Translation(ignition::math::Vector3d(20 + x, -30 + y, Zpos));
+          key->Rotation(ignition::math::Quaterniond(0, 0, 0.75));
+
+          x = math::Rand::GetDblUniform(-1.0, 1.0);
+          y = math::Rand::GetDblUniform(-1.0, 1.0);
+          key = anim->CreateKeyFrame(204.983);
+          key->Translation(ignition::math::Vector3d(25 + x, -35 + y, Zpos));
+          key->Rotation(ignition::math::Quaterniond(0, 0, 1.57));
+
+          x = math::Rand::GetDblUniform(-1.0, 1.0);
+          y = math::Rand::GetDblUniform(-1.0, 1.0);
+
+          key = anim->CreateKeyFrame(214.983);
+          key->Translation(ignition::math::Vector3d(25 + x, -35 + y, Zpos));
+          key->Rotation(ignition::math::Quaterniond(0, 0, 1.57));
+
+          // set the animation to the model
+
+
+          _model->SetAnimation(anim);
+          _anim = anim;
+          _world = _model->GetWorld();
+          intervalle = (depart - arret) / double(number_passenger);
+
+
+          
+          this->_updateConnection = event::Events::ConnectWorldUpdateBegin(
+            boost::bind(&AnimatedBus::OnUpdate, this, _1));
+
+        }
+        else
+        {
+          temps = _anim->GetTime();
+
+          if (loaded && temps > arret && temps < depart) {
+            const math::Pose &modelPose = _model->GetWorldPose();
+
+            sdf::SDF passengerSDF;
+            std::stringstream passengerDesc;
+            passengerDesc <<
+  			"<sdf version ='1.4'>\
+                           <model name ='passenger'>\
+                             <pose> 4.07524 0.063808 0.112085 1e-06 -1e-06 1.513</pose>\
+                             <link name ='link'>\
+                               <pose>0 0 0.2 0 0 0</pose>\
+                               <collision name ='collision'>\
+                                 <geometry>\
+  								<mesh>\
+  				 					<scale>1 1 1</scale>\
+                                   <uri>model://person_walking/meshes/walking.dae</uri>\
+  								</mesh>\
+                                 </geometry>\
+                               </collision>\
+                               <visual name ='visual'>\
+                                 <geometry>\
+                                 	<mesh>\
+  				 					<scale>1 1 1</scale>\
+                                   <uri>model://person_walking/meshes/walking.dae</uri>\
+  								</mesh>\
+                                 </geometry>\
+                               </visual>\
+                             </link>\
+                             <plugin name='animated_passenger' filename='libanimated_passenger.so'/>\
+                           </model>\
+                         </sdf>";
+            passengerSDF.SetFromString(passengerDesc.str());
+            // Demonstrate using a custom model name.
+            sdf::ElementPtr model = passengerSDF.Root()->GetElement("model");
+            model->GetAttribute("name")->SetFromString("unique_passenger");
+            _world->InsertModelSDF(passengerSDF);
+  	  //_world->InsertModelFile("model://passenger");
+            number_passenger--;
+  	        arret += intervalle;
+            loaded = number_passenger != 0;
+          }
+          else if (temps > 214.983)
+          {
+            _model->StopAnimation();
+            loaded = true;
+            arrete = true;
+            number_passenger = 20;
+            hasAnimation = false;
+
+          }
         }
 
       }
@@ -187,8 +213,12 @@ namespace gazebo
       gazebo::common::PoseAnimationPtr _anim;
       event::ConnectionPtr _updateConnection;
       double arret, depart, intervalle;
+      double temps;
       int number_passenger = 20;
-      bool loaded = true, arrete = true;
+      bool loaded = false, arrete = true;
+      double x, y;
+      bool hasAnimation;
+      std::ofstream myfile;
   };
   GZ_REGISTER_MODEL_PLUGIN(AnimatedBus);
 }

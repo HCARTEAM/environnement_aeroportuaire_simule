@@ -119,7 +119,6 @@ namespace gazebo
     }
 
     public: void OnUpdate(const common::UpdateInfo & /*_info*/) {
-      /* Destroy the passenger when they arrive */
       if (_anim->GetTime() >= _anim->GetLength()) {
           _model->GetWorld()->RemoveModel(_model);
       }
