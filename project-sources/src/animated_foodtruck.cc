@@ -41,7 +41,6 @@ namespace gazebo
 
   public:
     void OnUpdate(const common::UpdateInfo & /*_info*/) {
-        double temps = _anim->GetTime();
 
         if (!hasAnimation)
         {
@@ -126,9 +125,14 @@ namespace gazebo
           _model->SetAnimation(anim);
           _anim = anim;
           _world = _model->GetWorld();
+          
+          this->_updateConnection = event::Events::ConnectWorldUpdateBegin(
+            boost::bind(&AnimatedFoodTruck::OnUpdate, this, _1));
         }
         else
         {
+
+          double temps = _anim->GetTime();
           if (number_foodHandler > 0 && temps > 40 && temps < 160) {
             const math::Pose &modelPose = _model->GetWorldPose();
 

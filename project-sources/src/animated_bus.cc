@@ -32,8 +32,6 @@ namespace gazebo
       void Load(physics::ModelPtr _parent, sdf::ElementPtr /*_sdf*/) {
 
         _model = _parent;
-        myfile.open("test.txt");
-
 
         arrete = true;
         number_passenger = 20;
@@ -52,6 +50,14 @@ namespace gazebo
           hasAnimation = true;
           loaded = true;
           double Zpos(_model->GetWorldPose().pos.z);
+          std::vector<double> x;
+          std::vector<double> y;
+
+          for (int i = 0; i < 10; ++i)
+          {
+            x.push_back(math::Rand::GetDblUniform(-1.0, 1.0));
+            y.push_back(math::Rand::GetDblUniform(-1.0, 1.0));
+          }
 
             //Create the animation of the bus
           gazebo::common::PoseAnimationPtr anim(
@@ -60,32 +66,20 @@ namespace gazebo
           gazebo::common::PoseKeyFrame *key;
 
           // set starting location of the bus
-          x = math::Rand::GetDblUniform(-1.0, 1.0);
-          y = math::Rand::GetDblUniform(-1.0, 1.0);
-          myfile << "x = " << x << ", y = "  << y << std::endl;
           key = anim->CreateKeyFrame(0);
-          key->Translation(ignition::math::Vector3d(46.97 + x, -31.42 + y, Zpos));
+          key->Translation(ignition::math::Vector3d(46.97 + x[0], -31.42 + y[0], Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, -1.814));
 
-          x = math::Rand::GetDblUniform(-1.0, 1.0);
-          y = math::Rand::GetDblUniform(-1.0, 1.0);
-          myfile << "x = " << x << ", y = "  << y << std::endl;
           key = anim->CreateKeyFrame(14.56677);
-          key->Translation(ignition::math::Vector3d(11.67 + x, -22.47 + y, Zpos));
+          key->Translation(ignition::math::Vector3d(11.67 + x[1], -22.47 + y[1], Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, -1.814));
 
-          x = math::Rand::GetDblUniform(-1.0, 1.0);
-          y = math::Rand::GetDblUniform(-1.0, 1.0);
-          myfile << "x = " << x << ", y = "  << y << std::endl;
           key = anim->CreateKeyFrame(20.1888);
-          key->Translation(ignition::math::Vector3d(4.924 + x, -22.548 + y, Zpos));
+          key->Translation(ignition::math::Vector3d(4.924 + x[2], -22.548 + y[2], Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, -1.371));
 
-          x = math::Rand::GetDblUniform(-1.0, 1.0);
-          y = math::Rand::GetDblUniform(-1.0, 1.0);
-          myfile << "x = " << x << ", y = "  << y << std::endl;
           key = anim->CreateKeyFrame(26.805);
-          key->Translation(ignition::math::Vector3d(8.674 + x, -15.55 + y, Zpos));
+          key->Translation(ignition::math::Vector3d(8.674 + x[3], -15.55 + y[3], Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, -0.09));
 
       
@@ -99,41 +93,28 @@ namespace gazebo
             key->Rotation(ignition::math::Quaterniond(0, -0, 0));
           }
 
-          x = math::Rand::GetDblUniform(-1.0, 1.0);
-          y = math::Rand::GetDblUniform(-1.0, 1.0);
           key = anim->CreateKeyFrame(187.638);
-          key->Translation(ignition::math::Vector3d(5.25 + x, -7.6795 + y, Zpos));
+          key->Translation(ignition::math::Vector3d(5.25 + x[4], -7.6795 + y[4], Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, 0));
 
-          x = math::Rand::GetDblUniform(-1.0, 1.0);
-          y = math::Rand::GetDblUniform(-1.0, 1.0);
           key = anim->CreateKeyFrame(193.738);
-          key->Translation(ignition::math::Vector3d(5.25 + x, -15 + y, Zpos));
+          key->Translation(ignition::math::Vector3d(5.25 + x[5], -15 + y[5], Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, 0));
 
-          x = math::Rand::GetDblUniform(-1.0, 1.0);
-          y = math::Rand::GetDblUniform(-1.0, 1.0);
           key = anim->CreateKeyFrame(195.3663);
-          key->Translation(ignition::math::Vector3d(8 + x, -18 + y, Zpos));
+          key->Translation(ignition::math::Vector3d(8 + x[6], -18 + y[6], Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, 0.75));
 
-          x = math::Rand::GetDblUniform(-1.0, 1.0);
-          y = math::Rand::GetDblUniform(-1.0, 1.0);
           key = anim->CreateKeyFrame(202.1548);
-          key->Translation(ignition::math::Vector3d(20 + x, -30 + y, Zpos));
+          key->Translation(ignition::math::Vector3d(20 + x[7], -30 + y[7], Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, 0.75));
 
-          x = math::Rand::GetDblUniform(-1.0, 1.0);
-          y = math::Rand::GetDblUniform(-1.0, 1.0);
           key = anim->CreateKeyFrame(204.983);
-          key->Translation(ignition::math::Vector3d(25 + x, -35 + y, Zpos));
+          key->Translation(ignition::math::Vector3d(25 + x[8], -35 + y[8], Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, 1.57));
 
-          x = math::Rand::GetDblUniform(-1.0, 1.0);
-          y = math::Rand::GetDblUniform(-1.0, 1.0);
-
           key = anim->CreateKeyFrame(214.983);
-          key->Translation(ignition::math::Vector3d(25 + x, -35 + y, Zpos));
+          key->Translation(ignition::math::Vector3d(25 + x[9], -35 + y[9], Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, 1.57));
 
           // set the animation to the model
@@ -142,7 +123,6 @@ namespace gazebo
           _world = _model->GetWorld();
           intervalle = (depart - arret) / double(number_passenger);
 
-          
           this->_updateConnection = event::Events::ConnectWorldUpdateBegin(
             boost::bind(&AnimatedBus::OnUpdate, this, _1));
 
@@ -216,7 +196,6 @@ namespace gazebo
       bool loaded = false, arrete = true;
       double x, y;
       bool hasAnimation;
-      std::ofstream myfile;
   };
   GZ_REGISTER_MODEL_PLUGIN(AnimatedBus);
 }
