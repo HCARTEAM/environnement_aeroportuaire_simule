@@ -49,7 +49,7 @@ namespace gazebo
 
           for (int i = 0; i < 16; ++i)
           {
- 		if (i > 1 && i < 4)
+ 		        if (i > 1 && i < 4)
           	{
             		x.push_back(math::Rand::GetDblUniform(-0.5, 0.5));
            		 y.push_back(math::Rand::GetDblUniform(-0.5, 0.5));
@@ -59,7 +59,7 @@ namespace gazebo
             		x.push_back(math::Rand::GetDblUniform(-1.0, 1.0));
             		y.push_back(math::Rand::GetDblUniform(-1.0, 1.0));
           	}
-	  }
+	        }
 
           // create the animation
           gazebo::common::PoseAnimationPtr anim(
@@ -92,7 +92,7 @@ namespace gazebo
             key->Rotation(ignition::math::Quaterniond(0, 0, 1.57));
           }
 	
-	  key = anim->CreateKeyFrame(219.9);
+	        key = anim->CreateKeyFrame(219.9);
           key->Translation(ignition::math::Vector3d(-9+ x[3], 15 + y[3], Zpos));
           key->Rotation(ignition::math::Quaterniond(0, 0, 0));
 

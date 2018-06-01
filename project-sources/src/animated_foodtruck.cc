@@ -139,7 +139,6 @@ namespace gazebo
         }
         else
         {
-
           double temps = _anim->GetTime();
           if (number_foodHandler > 0 && temps > 40 && temps < 160) {
             const math::Pose &modelPose = _model->GetWorldPose();
